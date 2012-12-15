@@ -1,0 +1,8 @@
+.top
+  = render_component("top_block", @page)
+
+.bottom
+  .block.left
+    = render_component("bottom_left_block", @page)
+  .block.right
+    = render_component("bottom_right_block", @page)

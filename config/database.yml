@@ -1,0 +1,13 @@
+
+development:
+  adapter: mysql2
+  database: webmaker_dev
+  user: root
+  password:
+
+production:
+  adapter: mysql2
+  database: webmaker_dev
+  user: root
+  password:
+

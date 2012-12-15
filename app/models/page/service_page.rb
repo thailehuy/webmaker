@@ -1,0 +1,2 @@
+class ServicePage < Page
+end
