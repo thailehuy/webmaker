@@ -1,0 +1,13 @@
+.body-wrapper.theme-1 {
+  .nav {
+    ul::after {
+      content: "";
+      display: table;
+      clear: both;
+    };
+    ul li {
+      float: left;
+      width: 100px;
+    }
+  }
+}

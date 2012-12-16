@@ -1,0 +1,46 @@
+!!!
+%html
+  %head
+    %title Webmaker
+    = stylesheet_link_tag    "application", :media => "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+  %body
+    .body-wrapper
+      .top-panel
+        - if current_user && current_user.can_edit?(@site)
+          = link_to_function "Turn on edit mode", "", :id => "turn-on-edit"
+          = link_to_function "Turn off edit mode", "", :id => "turn-off-edit", :class => "hidden"
+      .editor
+        = select_tag :theme, options_for_select([["Default", ""], ["Theme 1", "theme-1"], ["Theme 2", "theme-2"]])
+        = submit_tag :test, :value => "Test theme", :id => "test-theme"
+      .nav
+        %ul
+          = display_nav_bar(@site)
+      .content
+        = yield
+      .footer
+        This is the footer
+    :javascript
+      $(function(){
+        $('#turn-on-edit').live("click", function() {
+          $(this).addClass('hidden');
+          $('#turn-off-edit').removeClass('hidden');
+          $('.body-wrapper').addClass('edit-mode');
+          $('.inplace-editing').restInPlace();
+          return false;
+        });
+        $('#turn-off-edit').live("click", function() {
+          $(this).addClass('hidden');
+          $('#turn-on-edit').removeClass('hidden');
+          $('.body-wrapper').removeClass('edit-mode');
+          $('.inplace-editing').unbind("click");
+          return false;
+        });
+        $('#test-theme').live("click", function() {
+          $.each($('#theme option'), function(index, option){
+            $('.body-wrapper').removeClass($(option).val());
+          });
+          $('.body-wrapper').addClass($('#theme').val());
+        });
+      })

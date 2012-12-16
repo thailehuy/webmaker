@@ -1,5 +1,6 @@
 class SitesController < ApplicationController
   before_filter :find_site, :except => [:index, :new, :create]
+  layout :set_layout
 
   # GET /sites
   # GET /sites.json
@@ -15,10 +16,7 @@ class SitesController < ApplicationController
   # GET /sites/1
   # GET /sites/1.json
   def show
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @site }
-    end
+    redirect_to :action => :home
   end
 
   # GET /sites/new
@@ -78,13 +76,30 @@ class SitesController < ApplicationController
   end
 
   # pages
+  def home
+    @page = @site.home_page
+    render "sites/page/home"
+  end
   def about
     @page = @site.about_page
     render "sites/page/about"
+  end
+  def service
+    @page = @site.service_page
+    render "sites/page/service"
   end
 
   private
   def find_site
     @site = Site.find(params[:id])
+  end
+
+  def set_layout
+    case action_name.to_s
+    when "home", "about", "service"
+      "site"
+    else
+      "application"
+    end
   end
 end

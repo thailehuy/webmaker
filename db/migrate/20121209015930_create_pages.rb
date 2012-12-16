@@ -4,6 +4,7 @@ class CreatePages < ActiveRecord::Migration
       t.string :name
       t.string :type
       t.integer :site_id
+      t.string :path
       t.timestamps
     end
   end

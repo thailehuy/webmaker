@@ -1,5 +1,12 @@
 %h1 New site
 
-= render 'form'
+= semantic_form_for @site do |f|
+  = f.input :name
+  = f.input :subdomain, :label => "Path"
+  = f.input :has_homepage, :as => :boolean
+  = f.input :has_aboutpage, :as => :boolean
+  = f.input :has_servicepage, :as => :boolean
+  = f.actions do
+    = f.submit
 
 = link_to 'Back', sites_path

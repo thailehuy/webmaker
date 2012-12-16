@@ -17,4 +17,8 @@ class AboutPage < Page
       :content => "This is bottom right block of the page"
     })
   end
+
+  def set_path
+    self.path = '/about'
+  end
 end

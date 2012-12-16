@@ -1,0 +1,15 @@
+.body-wrapper.theme-2 {
+  .nav {
+    float: left;
+    width: 150px;
+  }
+  .content {
+    float: right;
+    width: 800px;
+  }
+  .content::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
